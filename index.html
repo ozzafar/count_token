@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Discriminative Class Tokens for Text-to-Image Diffusion Models</title>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Discriminative Class Tokens for Text-to-Image Diffusion Models</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://idansc.github.io/">Idan Schwartz</a><sup>*1</sup>,</span>
+              <span class="author-block">
+                <a href="https://vesteinn.is">Vésteinn Snæbjarnarson</a><sup>*2</sup>,</span>
+              <span class="author-block">
+                <a href="https://sagiebenaim.github.io/">Sagie Benaim</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://hila-chefer.github.io/">Hila Chefer</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://rycolab.io/">Ryan Cotterell</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="http://www.cs.tau.ac.il/~wolf/">Lior Wolf</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.belongielab.org/">Serge Belongie</a><sup>2</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>*</sup>Equal contribution</span>
+              <span class="author-block"><sup>1</sup>Tel Aviv University,</span>
+              <span class="author-block"><sup>2</sup>University of Copenhagen - Pioneer Centre for AI,</span>
+              <span class="author-block"><sup>3</sup>ETH Zürich</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2011.12948" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2011.12948" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <img src="./static/images/hero.png" alt="Teaser" class="teaser-image">
+      <h2 class="subtitle has-text-centered">
+        Our method corrects output from generative text to image models with respect to a pre-trained classifer.
+      </h2>
+    </div>
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+
+            <p>Recent advances in text-to-image diffusion models have enabled the generation of diverse and high-quality
+              images. However, generated images often fall short of depicting subtle details and are susceptible to
+              errors due to ambiguity in the input text. One way of alleviating these issues is to train diffusion
+              models on class-labeled datasets. This comes with a downside, doing so limits their expressive power: (i)
+              supervised datasets are generally small compared to large-scale scraped text-image datasets on which
+              text-to-image models are trained, and so the quality and diversity of generated images are severely
+              affected, or (ii) the input is a hard-coded label, as opposed to free-form text, which limits the control
+              over the generated images.
+            </p>
+            <p>In this work, we propose a non-invasive fine-tuning technique that capitalizes on the expressive
+              potential of free-form text while achieving high accuracy through discriminative signals from a pretrained
+              classifier, which guides the generation. This is done by iteratively modifying the embedding of a single
+              input token of a text-to-image diffusion model, using the classifier, by steering generated images toward
+              a given target class. Our method is fast compared to prior fine-tuning methods and does not require a
+              collection of in-class images or retraining of a noise-tolerant classifier. We evaluate our method
+              extensively, showing that the generated images are: (i) more accurate and of higher quality than standard
+              diffusion models, (ii) can be used to augment training data in a low-resource setting, and (iii) reveal
+              information about the data used to train the guiding classifier.</p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-2">Iterations</h2>
+          <div class="content has-text-justified">
+            <p>
+              We can show how the generated image changes over time as the embedding is modified iteratively.
+            </p>
+          </div>
+          <div class="columns is-vcentered interpolation-panel">
+            <div class="column is-3 has-text-centered">
+              <img src="./static/gifs/madagascar_cat_1.gif" class="interpolation-image"
+                alt="Interpolate start reference image." />
+              <p>Madagascar cat</p>
+            </div>
+            <div class="column is-3 has-text-centered">
+              <img src="./static/gifs/anna_hummingbird_2.gif" class="interpolation-image"
+                alt="Interpolate start reference image." />
+              <p>Anna humingbird</p>
+            </div>
+            <div class="column is-3 has-text-centered">
+              <img src="./static/gifs/bullfrog_2.gif" class="interpolation-image"
+                alt="Interpolate start reference image." />
+              <p>Bullfrog</p>
+            </div>
+            <div class="column is-3 has-text-centered">
+              <img src="./static/gifs/spotted_catbird_2.gif" class="interpolation-image"
+                alt="Interpolate start reference image." />
+              <p>Spotted catbird</p>
+            </div>
+
+          </div>
+          <br />
+
+          <h2 class="title is-2">Examples with context</h2>
+          <div class="content has-text-justified">
+            <p>
+              The class tokens trained with our method can also be used with different context as shown in the images
+              below.
+              The three classes are from ImageNet, they are <i>tiger cat</i>, <i>japanese spaniel</i>, and <i>beach
+                wagon</i>.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img src="static/images/context.png">
+          </div>
+
+          <h2 class="title is-2">Method</h2>
+          <div class="content has-text-justified">
+            <p>
+              Our method works by adding a single new token to the input vocabulary of a text-to-image model. This token
+              is then updated
+              using a signal from a pretrained classifier. The classifier is thus used to guide the generation of
+              images. Using gradient skipping we more effectively update the embedding of the new token. We show that it
+              is sufficient to
+              to backpropagate through the top iteration of the diffusion process.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img width="500px" src="static/images/training.png">
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="./static/videos/nerfies_paper.pdf">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source
+                code</a> of this website,
+              we just ask that you link back to this page in the footer.
+              Please remember to remove the analytics code included in the header of the website which
+              you do not want on your website.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
