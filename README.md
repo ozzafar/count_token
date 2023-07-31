@@ -1,7 +1,7 @@
 # Discriminative Class Tokens for Text-to-Image Diffusion Models
 
 
-This is the repository that contains source code for the [Discriminative Class Tokens for Text-to-Image Diffusion Models website](https://vesteinn.github.io/disco/).
+This is the repository that contains source code for the [Discriminative Class Tokens for Text-to-Image Diffusion Models website](https://vesteinn.github.io/disco/). The project source code can be found at  [https://github.com/idansc/discriminative_class_tokens](https://github.com/idansc/discriminative_class_tokens).
 
 If you find the work useful please cite:
 ```
