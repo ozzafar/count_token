@@ -6,7 +6,7 @@ This is the repository that contains source code for the [Discriminative Class T
 If you find the work useful please cite:
 ```
 @article{2023disco,
-  author    = {Schwartz, Idan and Sn{\ae}bjarnarson, V{\'e}steinn and Benaim, Sagie and Chefer, Hila and Cotterell, Ryan and Wolf, Lior and Belongie, Serge},
+  author    = {Schwartz, Idan and Sn{\ae}bjarnarson, V{\'e}steinn and Chefer, Hila and Cotterell, Ryan and Wolf, Lior and Belongie, Serge and Benaim, Sagie},
   title     = {Discriminative Class Tokens for Text-to-Image Diffusion Models},
   journal   = {ICCV},
   year      = {2023},
