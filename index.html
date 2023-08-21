@@ -104,9 +104,9 @@
 
   <section class="hero teaser">
     <div class="container is-max-desktop">
-      <img src="./static/images/hero2.png" alt="Teaser" class="teaser-image">
+      <img src="./static/images/teas.png" alt="Teaser" class="teaser-image">
       <h2 class="subtitle has-text-centered">
-        Our method corrects output from generative text to image models with respect to a pre-trained classifer.
+        Our method corrects the output from generative text to image models with respect to a pre-trained classifer.
       </h2>
     </div>
     </div>
@@ -186,7 +186,7 @@
           <h2 class="title is-2">Examples with context</h2>
           <div class="content has-text-justified">
             <p>
-              The class tokens trained with our method can also be used with different context as shown in the images
+              The class tokens trained with our method can also be used in different context, as shown in the images
               below.
               The three classes are from ImageNet, they are <i>tiger cat</i>, <i>japanese spaniel</i>, and <i>beach
                 wagon</i>.
@@ -202,7 +202,7 @@
               Our method works by adding a single new token to the input vocabulary of a text-to-image model. This token
               is then updated
               using a signal from a pretrained classifier. The classifier is used to guide the generation of
-              images. Using gradient skipping we more effectively update the embedding of the new token. We show that it
+              images. Using gradient skipping, we more effectively update the embedding of the new token. We show that it
               is sufficient to backpropagate through the top iteration of the diffusion process.
             </p>
           </div>
@@ -216,7 +216,7 @@
           <div class="content has-text-justified">
             <p>
               Methods such as <i>textual inversion</i> (TI) rely on tuning a token using a few images.
-              Relying on a pre-trained classifier allows the token to capture a broader distribution corresponding
+              Relying on a pre-trained classifier allows the token to capture a broader distribution, corresponding
               to a class, as opposed to specific features of the individuals in the given images. As seen below, TI-generated images often lack diversity and are prone to incorporating background features from a limited set of images. For reference, we also display SD's generated samples.
               <br />
               <b>Lack of diversity</b> In the Japanese spaniel class, TI generates a black-and-white dog due to limited colors in the images, causing "A statue of a Japanese spaniel" prompts to lose the statue texture.
@@ -227,7 +227,19 @@
           <div class="content has-text-centered">
             <img src="static/images/comp_ti.png">
           </div>
-
+          
+          <h2 class="title is-2"> Classifier inversion </h2>
+          <div class="content has-text-justified">
+            <p>
+              Our method has the ability to inverse the action of a classifier without access to its trained data. For example, we often observe changes in the background when optimizing for an object's class. Applying our method with ImageNet-trained classifier results in an image of a lobster on a plate given the phrase `American lobster.'
+              Another example is the `horizontal bar' class, for which our method predominantly generates images containing athletes and a gym environment. We manually assessed ImageNet's training data by classifying 100 images from the `American lobster' and `horizontal bar' classes and determining whether they exhibit these features in the training data. 
+              For the `American lobster' class, 55% of the images featured a plate and the lobster in an edible form, and for the `horizontal bar' class, 95% of the images included an athlete performer.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img src="static/images/bias.png">
+          </div>
+        
         </div>
       </div>
 
