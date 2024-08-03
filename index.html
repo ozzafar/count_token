@@ -45,10 +45,10 @@
             <h1 class="title is-1 publication-title">Objects Count Optimization for Text-to-image Diffusion Models</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://github.com/ozzafar">Oz Zafar</a>,
+                <a href="https://github.com/ozzafar">Oz Zafar</a><sup>*</sup>,
               </span>
               <span class="author-block">
-                <a href="https://idansc.github.io/">Idan Schwartz</a>,
+                <a href="https://idansc.github.io/">Idan Schwartz</a><sup>*</sup>,
               </span>
               <span class="author-block">
                 <a href="http://www.cs.tau.ac.il/~wolf/">Lior Wolf</a>
@@ -56,8 +56,8 @@
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>*</sup>Equal contribution</span>
-              <span class="author-block">Tel Aviv University,</span>
+              <span class="author-block"><sup>*</sup>Equal contribution,</span>
+              <span class="author-block">Tel Aviv University</span>
             </div>
 
             <div class="column has-text-centered">
@@ -103,7 +103,7 @@
     <div class="container is-max-desktop">
       <img src="./static/images/teas.png" alt="Teaser" class="teaser-image">
       <h2 class="subtitle has-text-centered">
-        Our method corrects the output from generative text to image models with respect to a pre-trained classifer.
+        Our method corrects the output from generative text to image models with respect to a counting model.
       </h2>
     </div>
     </div>
@@ -121,7 +121,7 @@
 
             <p>We address a persistent challenge in text-to-image models: accurately generating a specified number of objects.
                Current models, which learn from image-text pairs, inherently struggle with counting as training data cannot depict every possible number of objects for any given object.
-               To solve this, we propose optimizing the generated image based on a counting loss derived from a counting model that aggregates an object's matcher potentials.
+               To solve this, we propose optimizing an embedding of a single input token based on a counting loss derived from a counting model that aggregates an object's matcher potentials.
                Employing an out-of-the-box counting model is challenging for two reasons: (i) the model requires a scaling hyperparameter for the potential aggregation that varies depending on the viewpoint of the objects, and (ii) classifier guidance techniques require models that operate on noisy images.
                To this end, our optimization is done on inference time, iteratively by conditioning on inferred images.
                Altering the text conditioning embedding and generating an image. Our method offers three key advantages: (i) it is a zero-shot method requiring no additional training data; (ii) it is a plug-and-play solution facilitating rapid changes to the counting techniques and image generation methods; and (iii) it provides user control for the desired level of accuracy.
@@ -173,10 +173,8 @@
           <h2 class="title is-2">Examples with context</h2>
           <div class="content has-text-justified">
             <p>
-              The class tokens trained with our method can also be used in different context, as shown in the images
-              below.
-              The three classes are from ImageNet, they are <i>tiger cat</i>, <i>japanese spaniel</i>, and <i>beach
-                wagon</i>.
+              The new tokens trained with our method can also be used in different context, as shown in the images
+              below. Each one of the four images utilizes a new token that was trained only on the bold part of the prompt.
             </p>
           </div>
           <div class="content has-text-centered">
@@ -187,10 +185,8 @@
           <div class="content has-text-justified">
             <p>
               Our method works by adding a single new token to the input vocabulary of a text-to-image model. This token
-              is then updated
-              using a signal from a pretrained classifier. The classifier is used to guide the generation of
-              images. Using gradient skipping, we more effectively update the embedding of the new token. We show that it
-              is sufficient to backpropagate through the top iteration of the diffusion process.
+              is then updated using a combined signal from a pretrained counting model and CLIP. The counting model is used to guide the generation of
+              images in the aspect of correct number of objects, while CLIP is used to ensure the preservation of the object class and the image naturalness.
             </p>
           </div>
           <div class="content has-text-centered">
@@ -202,13 +198,9 @@
           <h2 class="title is-2">Optimization process</h2>
           <div class="content has-text-justified">
             <p>
-              Methods such as <i>textual inversion</i> (TI) rely on tuning a token using a few images.
-              Relying on a pre-trained classifier allows the token to capture a broader distribution, corresponding
-              to a class, as opposed to specific features of the individuals in the given images. As seen below, TI-generated images often lack diversity and are prone to incorporating background features from a limited set of images. For reference, we also display SD's generated samples.
-              <br />
-              <b>Lack of diversity</b> In the Japanese spaniel class, TI generates a black-and-white dog due to limited colors in the images, causing "A statue of a Japanese spaniel" prompts to lose the statue texture.
-              <br />
-              <b>Biased background</b>  In the beach wagon class, TI merges the road into the object, transforming both the car and the background from beach to road.
+              We use a differentiable counting model that approximates the number of objects by creating a <b>density map</b> of a given class.
+              This density map provides a visual representation of the locations where objects of a particular class are likely to be found within the image.
+              This is an illustration of the optimization process for different time steps for the prompts “A photo of 5 cupcakes” and “A photo of 4 cottons”, next to their density maps.
             </p>
           </div>
           <div class="content has-text-centered">
@@ -218,9 +210,7 @@
           <h2 class="title is-2"> Class transfer </h2>
           <div class="content has-text-justified">
             <p>
-              Our method has the ability to inverse the action of a classifier without access to its trained data. For example, we often observe changes in the background when optimizing for an object's class. Applying our method with ImageNet-trained classifier results in an image of a lobster on a plate given the phrase `American lobster.'
-              Another example is the `horizontal bar' class, for which our method predominantly generates images containing athletes and a gym environment. We manually assessed ImageNet's training data by classifying 100 images from the `American lobster' and `horizontal bar' classes and determining whether they exhibit these features in the training data.
-              For the `American lobster' class, 55% of the images featured a plate and the lobster in an edible form, and for the `horizontal bar' class, 95% of the images included an athlete performer.
+              Our method has the ability to use a token that was trained to optimize the object count of some class to improve the object count of a different class.
             </p>
           </div>
           <div class="content has-text-centered">
