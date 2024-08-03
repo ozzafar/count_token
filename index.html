@@ -16,7 +16,7 @@
   
     gtag('config', 'G-SN3V1V2CRF');
   </script>
-  <title>Discriminative Class Tokens for Text-to-Image Diffusion Models</title>
+  <title>Objects Count Optimization for Text-to-image Diffusion Models</title>
 
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -42,37 +42,29 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Discriminative Class Tokens for Text-to-Image Diffusion Models</h1>
+            <h1 class="title is-1 publication-title">Objects Count Optimization for Text-to-image Diffusion Models</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://idansc.github.io/">Idan Schwartz</a><sup>*1</sup>,</span>
-              <span class="author-block">
-                <a href="https://vesteinn.is">Vésteinn Snæbjarnarson</a><sup>*2</sup>,</span>
-              <span class="author-block">
-                <a href="https://hila-chefer.github.io/">Hila Chefer</a><sup>1</sup>,
+                <a href="https://github.com/ozzafar">Oz Zafar</a>,
               </span>
               <span class="author-block">
-                <a href="https://www.belongielab.org/">Serge Belongie</a><sup>2</sup>
+                <a href="https://idansc.github.io/">Idan Schwartz</a>,
               </span>
               <span class="author-block">
-                <a href="http://www.cs.tau.ac.il/~wolf/">Lior Wolf</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://sagiebenaim.github.io/">Sagie Benaim</a><sup>2</sup>,
+                <a href="http://www.cs.tau.ac.il/~wolf/">Lior Wolf</a>
               </span>
             </div>
 
             <div class="is-size-5 publication-authors">
               <span class="author-block"><sup>*</sup>Equal contribution</span>
-              <span class="author-block"><sup>1</sup>Tel Aviv University,</span>
-              <span class="author-block"><sup>2</sup>University of Copenhagen - Pioneer Centre for AI,</span>
+              <span class="author-block">Tel Aviv University,</span>
             </div>
 
             <div class="column has-text-centered">
               <div class="publication-links">
                 <!-- PDF Link. -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/pdf/2303.17155.pdf"
+                  <a href="TODO"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -81,7 +73,7 @@
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2303.17155" class="external-link button is-normal is-rounded is-dark">
+                  <a href="TODO" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
@@ -90,7 +82,7 @@
                 </span>
                 <!-- Code Link. -->
                 <span class="link-block">
-                  <a href="https://github.com/idansc/discriminative_class_tokens"
+                  <a href="https://github.com/ozzafar/discriminative_class_tokens_for_counting"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -127,24 +119,14 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
 
-            <p>Recent advances in text-to-image diffusion models have enabled the generation of diverse and high-quality
-              images. However, generated images often fall short of depicting subtle details and are susceptible to
-              errors due to ambiguity in the input text. One way of alleviating these issues is to train diffusion
-              models on class-labeled datasets. This comes with a downside, doing so limits their expressive power: (i)
-              supervised datasets are generally small compared to large-scale scraped text-image datasets on which
-              text-to-image models are trained, and so the quality and diversity of generated images are severely
-              affected, or (ii) the input is a hard-coded label, as opposed to free-form text, which limits the control
-              over the generated images.
+            <p>We address a persistent challenge in text-to-image models: accurately generating a specified number of objects.
+               Current models, which learn from image-text pairs, inherently struggle with counting as training data cannot depict every possible number of objects for any given object.
+               To solve this, we propose optimizing the generated image based on a counting loss derived from a counting model that aggregates an object's matcher potentials.
+               Employing an out-of-the-box counting model is challenging for two reasons: (i) the model requires a scaling hyperparameter for the potential aggregation that varies depending on the viewpoint of the objects, and (ii) classifier guidance techniques require models that operate on noisy images.
+               To this end, our optimization is done on inference time, iteratively by conditioning on inferred images.
+               Altering the text conditioning embedding and generating an image. Our method offers three key advantages: (i) it is a zero-shot method requiring no additional training data; (ii) it is a plug-and-play solution facilitating rapid changes to the counting techniques and image generation methods; and (iii) it provides user control for the desired level of accuracy.
+               We evaluate the generation of various objects and demonstrate that our approach significantly enhances accuracy.
             </p>
-            <p>In this work, we propose a non-invasive fine-tuning technique that capitalizes on the expressive
-              potential of free-form text while achieving high accuracy through discriminative signals from a pretrained
-              classifier, which guides the generation. This is done by iteratively modifying the embedding of a single
-              input token of a text-to-image diffusion model, using the classifier, by steering generated images toward
-              a given target class. Our method is fast compared to prior fine-tuning methods and does not require a
-              collection of in-class images or retraining of a noise-tolerant classifier. We evaluate our method
-              extensively, showing that the generated images are: (i) more accurate and of higher quality than standard
-              diffusion models, (ii) can be used to augment training data in a low-resource setting, and (iii) reveal
-              information about the data used to train the guiding classifier.</p>
           </div>
         </div>
       </div>
@@ -165,24 +147,24 @@
           </div>
           <div class="columns is-vcentered interpolation-panel">
             <div class="column is-3 has-text-centered">
-              <img src="./static/gifs/madagascar_cat_1.gif" class="interpolation-image"
+              <img src="./static/gifs/oranges.gif" class="interpolation-image"
                 alt="Interpolate start reference image." />
-              <p>Madagascar cat</p>
+              <p>5 oranges</p>
             </div>
             <div class="column is-3 has-text-centered">
-              <img src="./static/gifs/anna_hummingbird_2.gif" class="interpolation-image"
+              <img src="./static/gifs/cupcakes.gif" class="interpolation-image"
                 alt="Interpolate start reference image." />
-              <p>Anna humingbird</p>
+              <p>5 cupcakes</p>
             </div>
             <div class="column is-3 has-text-centered">
-              <img src="./static/gifs/bullfrog_2.gif" class="interpolation-image"
+              <img src="./static/gifs/cars.gif" class="interpolation-image"
                 alt="Interpolate start reference image." />
-              <p>Bullfrog</p>
+              <p>5 cars</p>
             </div>
             <div class="column is-3 has-text-centered">
-              <img src="./static/gifs/spotted_catbird_2.gif" class="interpolation-image"
+              <img src="./static/gifs/sheep.gif" class="interpolation-image"
                 alt="Interpolate start reference image." />
-              <p>Spotted catbird</p>
+              <p>5 sheep</p>
             </div>
 
           </div>
@@ -217,7 +199,7 @@
 
 
 
-          <h2 class="title is-2">Benefits of using a classifer</h2>
+          <h2 class="title is-2">Optimization process</h2>
           <div class="content has-text-justified">
             <p>
               Methods such as <i>textual inversion</i> (TI) rely on tuning a token using a few images.
@@ -230,19 +212,19 @@
             </p>
           </div>
           <div class="content has-text-centered">
-            <img src="static/images/comp_ti.png">
+            <img src="static/images/optimization_process.png">
           </div>
-          
-          <h2 class="title is-2"> Classifier inversion </h2>
+
+          <h2 class="title is-2"> Class transfer </h2>
           <div class="content has-text-justified">
             <p>
               Our method has the ability to inverse the action of a classifier without access to its trained data. For example, we often observe changes in the background when optimizing for an object's class. Applying our method with ImageNet-trained classifier results in an image of a lobster on a plate given the phrase `American lobster.'
-              Another example is the `horizontal bar' class, for which our method predominantly generates images containing athletes and a gym environment. We manually assessed ImageNet's training data by classifying 100 images from the `American lobster' and `horizontal bar' classes and determining whether they exhibit these features in the training data. 
+              Another example is the `horizontal bar' class, for which our method predominantly generates images containing athletes and a gym environment. We manually assessed ImageNet's training data by classifying 100 images from the `American lobster' and `horizontal bar' classes and determining whether they exhibit these features in the training data.
               For the `American lobster' class, 55% of the images featured a plate and the lobster in an edible form, and for the `horizontal bar' class, 95% of the images included an athlete performer.
             </p>
           </div>
           <div class="content has-text-centered">
-            <img src="static/images/bias.png">
+            <img src="static/images/class_transfer.png">
           </div>
         
         </div>
@@ -256,12 +238,7 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@article{schwartz2023discriminative,
-  title = {Discriminative Class Tokens for Text-to-Image Diffusion Models},
-  author = {Schwartz, Idan and Sn{\ae}bjarnarson, V{\'e}steinn and Chefer, Hila and Cotterell, Ryan and Belongie, Serge and Wolf, Lior and Benaim, Sagie},
-  journal = {ICCV},
-  year = {2023}
-}</code></pre>
+      <pre><code> TODO </code></pre>
     </div>
   </section>
 
