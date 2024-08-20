@@ -103,7 +103,7 @@
     <div class="container is-max-desktop">
       <img src="./static/images/teas.png" alt="Teaser" class="teaser-image">
       <h2 class="subtitle has-text-centered">
-        Our method corrects the output from generative text to image models with respect to a counting model.
+        We propose a plug-and-play optimization of object counting accuracy of a text-to-image model based on detection models.
       </h2>
     </div>
     </div>
@@ -139,12 +139,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column is-full-width">
-          <h2 class="title is-2">Iterations</h2>
-          <div class="content has-text-justified">
-            <p>
-              We can show how the generated image changes over time as the embedding is modified iteratively.
-            </p>
-          </div>
+          <h2 class="title is-2">Iterative Optimization</h2>
           <div class="columns is-vcentered interpolation-panel">
             <div class="column is-3 has-text-centered">
               <img src="./static/gifs/oranges.gif" class="interpolation-image"
@@ -170,44 +165,33 @@
           </div>
           <br />
 
-          <h2 class="title is-2">Examples with context</h2>
-          <div class="content has-text-justified">
-            <p>
-              The new tokens trained with our method can also be used in different context, as shown in the images
-              below. Each one of the four images utilizes a new token that was trained only on the bold part of the prompt.
-            </p>
-          </div>
-          <div class="content has-text-centered">
-            <img src="static/images/context.png">
-          </div>
 
           <h2 class="title is-2">Method</h2>
           <div class="content has-text-justified">
-            <p>
-              Our method works by adding a single new token to the input vocabulary of a text-to-image model. This token
-              is then updated using a combined signal from a pretrained counting model and CLIP. The counting model is used to guide the generation of
-              images in the aspect of correct number of objects, while CLIP is used to ensure the preservation of the object class and the image naturalness.
+            <p> Our method iteratively generates images and calculates a counting loss based on object potentials.
+              To align the counting with non-derivable detection-based counting, we scale the potentials at each step based on a detection model (e.g., YOLO).
+              We also consider a CLIP matching penalty term to maintain the semantics of the image while changing the object count.
+              The loss at each step is used to update an added counting token, which is used to control the generation.
+              The counting token can be reused after convergence to generate additional images with better accuracy without the need for further optimization.
             </p>
           </div>
           <div class="content has-text-centered">
-            <img width="500px" src="static/images/training.png">
+            <img width="600px" src="static/images/count_method.png">
           </div>
-
-
 
           <h2 class="title is-2">Optimization process</h2>
           <div class="content has-text-justified">
             <p>
               We employ a differentiable counting model that approximates the number of objects by creating a <b>potential map</b> of a given class.
               This density map provides a visual representation of the locations where objects of a particular class are likely to be found within the image.
-              This is an illustration of the optimization process for different time steps for the prompts “A photo of 5 cupcakes” and “A photo of 4 cottons”, next to their density maps.
+              This is an illustration of the optimization process for different time steps for the prompts “A photo of 5 cupcakes” and “A photo of 4 cottons”, next to their potential maps.
             </p>
           </div>
           <div class="content has-text-centered">
             <img src="static/images/optimization_process.png">
           </div>
 
-          <h2 class="title is-2">Detection-based Dynamic Scale Counting</h2>
+          <h2 class="title is-2">Detection-based Counting Guidance</h2>
           <div class="content has-text-justified">
             <p>
               Potential map based counting models require a <b>scaling hyperparameter</b> to aggregate and normalize it to a single count.
@@ -217,7 +201,18 @@
             </p>
           </div>
           <div class="content has-text-centered">
-            <img src="static/images/static_vs_dynamic.png" >
+            <img width="500px" src="static/images/static_vs_dynamic.png">
+          </div>
+
+          <h2 class="title is-2">Examples with context</h2>
+          <div class="content has-text-justified">
+            <p>
+              The new tokens trained with our method can also be used in different context, as shown in the images
+              below. Each one of the four images utilizes a new token that was trained only on the bold part of the prompt.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img src="static/images/context.png">
           </div>
 
           <h2 class="title is-2"> Class transfer </h2>
