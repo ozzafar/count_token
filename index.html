@@ -179,52 +179,46 @@
             <img width="600px" src="static/images/count_method.png">
           </div>
 
-          <h2 class="title is-2">Optimization process</h2>
+          <h2 class="title is-2">Optimization Process</h2>
           <div class="content has-text-justified">
             <p>
-              We employ a differentiable counting model that approximates the number of objects by creating a <b>potential map</b> of a given class.
-              This density map provides a visual representation of the locations where objects of a particular class are likely to be found within the image.
-              This is an illustration of the optimization process for different time steps for the prompts “A photo of 5 cupcakes” and “A photo of 4 cottons”, next to their potential maps.
-            </p>
+              We employ a differentiable object potential model that approximates the number of objects.
+              Below, we show an illustration of the optimization process at different time steps for the prompts “A photo of 5 cupcakes” and “A photo of 4 cottons”, alongside their object potential maps.            </p>
           </div>
           <div class="content has-text-centered">
             <img src="static/images/optimization_process.png">
           </div>
 
-          <h2 class="title is-2">Detection-based Counting Guidance</h2>
+          <h2 class="title is-2">Detection-based Counting Scaling</h2>
           <div class="content has-text-justified">
             <p>
-              Potential map based counting models require a <b>scaling hyperparameter</b> to aggregate and normalize it to a single count.
-              Finding a general scaling factor for any object is challenging, as the scale of the object in the image is dependent on various factors.
-              Instead, we control the generation process by reinforcing the scaling hyperparameter based on employing YOLO, a detection-based counting score.
-              We show that for complex objects, dynamic scaling tends to be more accurate than static scaling.
+              A <b>scaling hyperparameter</b> is required to aggregate and normalize the potential map to a single count.
+              Finding a general scaling factor for any object is challenging due to varying object sizes and different viewpoints, which lead to deformed potential maps.
+              To address this, we control the generation process by scaling a hyperparameter using a detection-based counting score. This also allows us to influence the optimization according to the detection model.
             </p>
           </div>
           <div class="content has-text-centered">
             <img width="500px" src="static/images/static_vs_dynamic.png">
           </div>
 
-          <h2 class="title is-2">Examples with context</h2>
+          <h2 class="title is-2">Token Reuse</h2>
           <div class="content has-text-justified">
             <p>
-              The new tokens trained with our method can also be reused in different context, as shown in the images
-              below. Each one of the four images utilizes a new token that was trained only on the bold part of the prompt.
-            </p>
-          </div>
-          <div class="content has-text-centered">
-            <img src="static/images/context.png">
-          </div>
-
-          <h2 class="title is-2"> Class transfer </h2>
-          <div class="content has-text-justified">
-            <p>
-              Our method has the ability to reuse a token that was trained to optimize the object count of some class to improve the object count of a different class.
+            The count token  can be re-used. For instance, our method trained a token for the prompt “A photo of 10 oranges,” which was later employed for “A photo of 10 strawberries” or similarly for pigeons and crows.
+            This potentially reduces the need for repeated inference time optimization for new counting tokens for the same quantities.
             </p>
           </div>
           <div class="content has-text-centered">
             <img src="static/images/class_transfer.png">
           </div>
-        
+            <p>
+            Further, our counting token can be reused with different prompts. For instance, our token accurately counts the number of oranges even when we ask it to be with a dog.
+            Moreover, we show examples of using trained tokens with different backgrounds, such as three cups in the sea, and demonstrate the ability to reuse the counting token in different styles, such as painting. <br> <br>
+            </p>
+          <div class="content has-text-centered">
+            <img src="static/images/context.png">
+          </div>
+
         </div>
       </div>
 
