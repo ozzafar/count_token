@@ -1,4 +1,4 @@
-# Objects Count Optimization for Text-to-image Diffusion Models
+# Iterative Object Count Optimization for Text-to-image Diffusion Models
 
 
 This is the repository that contains source code for the [Objects Count Optimization for Text-to-image Diffusion Models website](https://ozzafar.github.io/count_token/). The project source code can be found at  [https://github.com/ozzafar/discriminative_class_tokens_for_counting](https://github.com/ozzafar/discriminative_class_tokens_for_counting).

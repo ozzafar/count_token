@@ -16,7 +16,7 @@
   
     gtag('config', 'G-SN3V1V2CRF');
   </script>
-  <title>Objects Count Optimization for Text-to-image Diffusion Models</title>
+  <title>Iterative Object Count Optimization for Text-to-image Diffusion Models</title>
 
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -120,12 +120,12 @@
           <div class="content has-text-justified">
 
             <p>We address a persistent challenge in text-to-image models: accurately generating a specified number of objects.
-               Current models, which learn from image-text pairs, inherently struggle with counting as training data cannot depict every possible number of objects for any given object.
-               To solve this, we propose optimizing an embedding of a single input token based on a counting loss derived from a counting model that aggregates an object's matcher potentials.
-               Employing an out-of-the-box counting model is challenging for two reasons: (i) the model requires a scaling hyperparameter for the potential aggregation that varies depending on the viewpoint of the objects, and (ii) classifier guidance techniques require models that operate on noisy images.
-               To this end, our optimization is done on inference time, iteratively by conditioning on inferred images.
-               Altering the text conditioning embedding and generating an image. Our method offers three key advantages: (i) it is a zero-shot method requiring no additional training data; (ii) it is a plug-and-play solution facilitating rapid changes to the counting techniques and image generation methods; and (iii) it provides user control for the desired level of accuracy.
-               We evaluate the generation of various objects and demonstrate that our approach significantly enhances accuracy.
+              Current models, which learn from image-text pairs, inherently struggle with counting, as training data cannot depict every possible number of objects for any given object.
+              To solve this, we propose optimizing the generated image based on a counting loss derived from a counting model that aggregates an object’s potential.
+              Employing an out-of-the-box counting model is challenging for two reasons: first, the model requires a scaling hyperparameter for the potential aggregation that varies depending on the viewpoint of the objects, and second, classifier guidance techniques require modified models that operate on noisy intermediate diffusion steps.
+              To address these challenges, we propose an iterated online training mode that improves the accuracy of inferred images while altering the text conditioning embedding and dynamically adjusting hyperparameters.
+              Our method offers three key advantages: (i) it can be based on any detection models; (ii) it is a zero-shot plug-and-play solution facilitating rapid changes to the counting techniques and image generation methods; and (iii) the optimized counting token can be reused to generate accurate images without further optimization.
+              We evaluate the generation of various objects and show significant improvements in accuracy.
             </p>
           </div>
         </div>
