@@ -1,11 +1,16 @@
 # Objects Count Optimization for Text-to-image Diffusion Models
 
 
-This is the repository that contains source code for the [Objects Count Optimization for Text-to-image Diffusion Models website](https://ozzafar.github.io/disco/). The project source code can be found at  [https://github.com/ozzafar/discriminative_class_tokens_for_counting](https://github.com/ozzafar/discriminative_class_tokens_for_counting).
+This is the repository that contains source code for the [Objects Count Optimization for Text-to-image Diffusion Models website](https://ozzafar.github.io/count_token/). The project source code can be found at  [https://github.com/ozzafar/discriminative_class_tokens_for_counting](https://github.com/ozzafar/discriminative_class_tokens_for_counting).
 
 If you find the work useful please cite:
 ```
-TODO
+@article{2023disco,
+  author    = {Schwartz, Idan and Sn{\ae}bjarnarson, V{\'e}steinn and Chefer, Hila and Belongie, Serge and Wolf, Lior and Benaim, Sagie},
+  title     = {Discriminative Class Tokens for Text-to-Image Diffusion Models},
+  journal   = {ICCV},
+  year      = {2023},
+}
 ```
 
 # Website License
