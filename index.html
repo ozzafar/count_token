@@ -198,13 +198,26 @@
           <h2 class="title is-2">Optimization process</h2>
           <div class="content has-text-justified">
             <p>
-              We use a differentiable counting model that approximates the number of objects by creating a <b>density map</b> of a given class.
+              We employ a differentiable counting model that approximates the number of objects by creating a <b>potential map</b> of a given class.
               This density map provides a visual representation of the locations where objects of a particular class are likely to be found within the image.
               This is an illustration of the optimization process for different time steps for the prompts “A photo of 5 cupcakes” and “A photo of 4 cottons”, next to their density maps.
             </p>
           </div>
           <div class="content has-text-centered">
             <img src="static/images/optimization_process.png">
+          </div>
+
+          <h2 class="title is-2">Detection-based Dynamic Scale Counting</h2>
+          <div class="content has-text-justified">
+            <p>
+              Potential map based counting models require a <b>scaling hyperparameter</b> to aggregate and normalize it to a single count.
+              Finding a general scaling factor for any object is challenging, as the scale of the object in the image is dependent on various factors.
+              Instead, we control the generation process by reinforcing the scaling hyperparameter based on employing YOLO, a detection-based counting score.
+              We show that for complex objects, dynamic scaling tends to be more accurate than static scaling.
+            </p>
+          </div>
+          <div class="content has-text-centered">
+            <img src="static/images/static_vs_dynamic.png" >
           </div>
 
           <h2 class="title is-2"> Class transfer </h2>
