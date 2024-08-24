@@ -5,11 +5,14 @@ This is the repository that contains source code for the [Iterative Object Count
 
 If you find the work useful please cite:
 ```
-@article{2023disco,
-  author    = {Schwartz, Idan and Sn{\ae}bjarnarson, V{\'e}steinn and Chefer, Hila and Belongie, Serge and Wolf, Lior and Benaim, Sagie},
-  title     = {Discriminative Class Tokens for Text-to-Image Diffusion Models},
-  journal   = {ICCV},
-  year      = {2023},
+@misc{zafar2024iterativeobjectcountoptimization,
+      title={Iterative Object Count Optimization for Text-to-image Diffusion Models}, 
+      author={Oz Zafar and Lior Wolf and Idan Schwartz},
+      year={2024},
+      eprint={2408.11721},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2408.11721}, 
 }
 ```
 
