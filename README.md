@@ -1,13 +1,13 @@
-# Iterative Object Count Optimization for Text-to-image Diffusion Models
+# Detection-Driven Object Count Optimization for Text-to-image Diffusion Models
 
 
-This is the repository that contains source code for the [Iterative Object Count Optimization for Text-to-image Diffusion Models website](https://ozzafar.github.io/count_token/). The project source code can be found at  [https://github.com/ozzafar/count_token_optimization](https://github.com/ozzafar/count_token_optimization).
+This is the repository that contains source code for the [Detection-Driven Object Count Optimization for Text-to-image Diffusion Models website](https://ozzafar.github.io/count_token/). The project source code can be found at  [https://github.com/ozzafar/count_token_optimization](https://github.com/ozzafar/count_token_optimization).
 
 If you find the work useful please cite:
 ```
 @misc{zafar2024iterativeobjectcountoptimization,
       title={Iterative Object Count Optimization for Text-to-image Diffusion Models}, 
-      author={Oz Zafar and Lior Wolf and Idan Schwartz},
+      author={Oz Zafar and Lior Wolf and Idan Schwartz and Yuval Cohen},
       year={2024},
       eprint={2408.11721},
       archivePrefix={arXiv},
